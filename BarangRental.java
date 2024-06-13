@@ -15,7 +15,6 @@ public class BarangRental {
         this.isRented = false;
     }
 
-    // Getters and Setters
     public String getNoTNKB() {
         return noTNKB;
     }

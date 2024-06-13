@@ -23,7 +23,7 @@ public class Main {
             System.out.println("5. Keluar");
             System.out.print("Pilih (1-5): ");
             choice = scanner.nextInt();
-            scanner.nextLine(); // consume newline
+            scanner.nextLine(); 
 
             switch (choice) {
                 case 1:
@@ -39,12 +39,12 @@ public class Main {
                     String namaPeminjam = scanner.nextLine();
                     System.out.print("Lama Pinjam (jam): ");
                     int lamaPinjam = scanner.nextInt();
-                    scanner.nextLine(); // consume newline
+                    scanner.nextLine(); 
                     System.out.print("Nomor TNKB Kendaraan: ");
                     String noTNKB = scanner.nextLine();
                     System.out.print("Apakah Anda seorang member (true/false)? ");
                     boolean isMember = scanner.nextBoolean();
-                    scanner.nextLine(); // consume newline
+                    scanner.nextLine(); 
 
                     BarangRental selectedBarang = null;
                     for (BarangRental br : barangRentals) {

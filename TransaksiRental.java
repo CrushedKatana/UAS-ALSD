@@ -17,12 +17,12 @@ public class TransaksiRental {
     private double calculateTotalBiaya(int lamaPinjam, BarangRental br, boolean isMember) {
         double biaya = lamaPinjam * br.getBiayaSewa();
         if (isMember) {
-            biaya -= 25000; // potongan harga untuk member
+            biaya -= 25000; 
         }
         if (lamaPinjam >= 48 && lamaPinjam <= 78) {
-            biaya *= 0.9; // potongan 10%
+            biaya *= 0.9; 
         } else if (lamaPinjam > 78) {
-            biaya *= 0.8; // potongan 20%
+            biaya *= 0.8; 
         }
         return biaya;
     }
