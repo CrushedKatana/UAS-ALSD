@@ -23,11 +23,13 @@ public class Main {
             System.out.println("5. Keluar");
             System.out.print("Pilih (1-5): ");
             choice = scanner.nextInt();
-            scanner.nextLine();
+            scanner.nextLine(); // consume newline
 
             switch (choice) {
                 case 1:
+                    System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
                     System.out.println("Daftar Kendaraan Rental Serba Serbi");
+                    System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
                     System.out.println("Nomor TNKB | Nama Kendaraan | Jenis | Tahun | Biaya Sewa Perjam | Status");
                     for (BarangRental br : barangRentals) {
                         System.out.println(br.getNoTNKB() + " | " + br.getNamaKendaraan() + " | " + br.getJenisKendaraan() +
@@ -35,6 +37,7 @@ public class Main {
                     }
                     break;
                 case 2:
+                    System.out.println("============================================");
                     System.out.print("Nama Peminjam: ");
                     String namaPeminjam = scanner.nextLine();
                     System.out.print("Lama Pinjam (jam): ");
@@ -67,15 +70,17 @@ public class Main {
                     }
                     break;
                 case 3:
+                    System.out.println("============================================");
                     System.out.println("Daftar Transaksi Peminjaman Rental Serba Serbi");
                     System.out.println("Kode Transaksi | No TNKB | Nama Barang | Nama Peminjam | Lama Pinjam | Total Biaya");
-                    transaksiList.printListWithDetails(); 
+                    transaksiList.printListWithDetails(); // Menambahkan detail pencetakan transaksi
+                    System.out.println("TOTAL PENDAPATAN RENTAL SERBA SERBI");
                     double totalPendapatan = transaksiList.calculateTotalPendapatan();
                     System.out.println("Pendapatan hari ini: Rp " + totalPendapatan);
                     break;
                 case 4:
-                    transaksiList.sortByNoTNKB();
-                    System.out.println("Transaksi berhasil diurutkan berdasarkan nomor TNKB!");
+                    transaksiList.sortByFirstLetterAndTNKB();
+                    System.out.println("Transaksi berhasil diurutkan berdasarkan huruf pertama nama dan nomor TNKB!");
                     break;
                 case 5:
                     System.out.println("Terima kasih telah menggunakan layanan kami!");
