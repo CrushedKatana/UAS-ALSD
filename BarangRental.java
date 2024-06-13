@@ -4,6 +4,7 @@ public class BarangRental {
     private String jenisKendaraan;
     private int tahun;
     private int biayaSewa;
+    private boolean isRented;
 
     public BarangRental(String noTNKB, String namaKendaraan, String jenisKendaraan, int tahun, int biayaSewa) {
         this.noTNKB = noTNKB;
@@ -11,8 +12,10 @@ public class BarangRental {
         this.jenisKendaraan = jenisKendaraan;
         this.tahun = tahun;
         this.biayaSewa = biayaSewa;
+        this.isRented = false;
     }
 
+    // Getters and Setters
     public String getNoTNKB() {
         return noTNKB;
     }
@@ -31,5 +34,13 @@ public class BarangRental {
 
     public int getBiayaSewa() {
         return biayaSewa;
+    }
+
+    public boolean isRented() {
+        return isRented;
+    }
+
+    public void setRented(boolean rented) {
+        isRented = rented;
     }
 }

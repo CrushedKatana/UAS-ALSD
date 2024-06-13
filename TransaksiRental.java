@@ -6,12 +6,25 @@ public class TransaksiRental {
     private double totalBiaya;
     private BarangRental br;
 
-    public TransaksiRental(String namaPeminjam, int lamaPinjam, BarangRental br) {
+    public TransaksiRental(String namaPeminjam, int lamaPinjam, BarangRental br, boolean isMember) {
         this.kodeTransaksi = autoIncrement++;
         this.namaPeminjam = namaPeminjam;
         this.lamaPinjam = lamaPinjam;
         this.br = br;
-        this.totalBiaya = lamaPinjam * br.getBiayaSewa();
+        this.totalBiaya = calculateTotalBiaya(lamaPinjam, br, isMember);
+    }
+
+    private double calculateTotalBiaya(int lamaPinjam, BarangRental br, boolean isMember) {
+        double biaya = lamaPinjam * br.getBiayaSewa();
+        if (isMember) {
+            biaya -= 25000; // potongan harga untuk member
+        }
+        if (lamaPinjam >= 48 && lamaPinjam <= 78) {
+            biaya *= 0.9; // potongan 10%
+        } else if (lamaPinjam > 78) {
+            biaya *= 0.8; // potongan 20%
+        }
+        return biaya;
     }
 
     // Getters

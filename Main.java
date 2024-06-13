@@ -3,11 +3,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         BarangRental[] barangRentals = {
-            new BarangRental("S 4567 YV", "Honda Beat", "Motor", 2017, 10000),
-            new BarangRental("IN 4511 VS", "Honda Vario", "Motor", 2018, 10000),
-            new BarangRental("IN 1453 AA", "Toyota Yaris", "Mobil", 2022, 30000),
-            new BarangRental("AB 4321 A", "Toyota Innova", "Mobil", 2019, 60000),
-            new BarangRental("B 1234 AG", "Toyota Avanza", "Mobil", 2021, 25000)
+            new BarangRental("S 4567 YV", "Honda Beat", "Motor", 2017, 25000),
+            new BarangRental("IN 4511 VS", "Honda Vario", "Motor", 2018, 25000),
+            new BarangRental("IN 1453 AA", "Toyota Yaris", "Mobil", 2022, 40000),
+            new BarangRental("AB 4321 A", "Toyota Innova", "Mobil", 2019, 40000),
+            new BarangRental("B 1234 AG", "Toyota Avanza", "Mobil", 2021, 40000)
         };
 
         DoubleLinkedList transaksiList = new DoubleLinkedList();
@@ -31,7 +31,7 @@ public class Main {
                     System.out.println("Nomor TNKB | Nama Kendaraan | Jenis | Tahun | Biaya Sewa Perjam");
                     for (BarangRental br : barangRentals) {
                         System.out.println(br.getNoTNKB() + " | " + br.getNamaKendaraan() + " | " + br.getJenisKendaraan() +
-                                " | " + br.getTahun() + " | " + br.getBiayaSewa());
+                                " | " + br.getTahun() + " | " + br.getBiayaSewa() + " | " + (br.isRented() ? "Sudah Dipinjam" : "Tersedia"));
                     }
                     break;
                 case 2:
@@ -42,6 +42,10 @@ public class Main {
                     scanner.nextLine(); // consume newline
                     System.out.print("Nomor TNKB Kendaraan: ");
                     String noTNKB = scanner.nextLine();
+                    System.out.print("Apakah Anda seorang member (true/false)? ");
+                    boolean isMember = scanner.nextBoolean();
+                    scanner.nextLine(); // consume newline
+
                     BarangRental selectedBarang = null;
                     for (BarangRental br : barangRentals) {
                         if (br.getNoTNKB().equals(noTNKB)) {
@@ -50,9 +54,14 @@ public class Main {
                         }
                     }
                     if (selectedBarang != null) {
-                        TransaksiRental transaksi = new TransaksiRental(namaPeminjam, lamaPinjam, selectedBarang);
-                        transaksiList.add(transaksi);
-                        System.out.println("Transaksi berhasil ditambahkan!");
+                        if (!selectedBarang.isRented()) {
+                            TransaksiRental transaksi = new TransaksiRental(namaPeminjam, lamaPinjam, selectedBarang, isMember);
+                            transaksiList.add(transaksi);
+                            selectedBarang.setRented(true);
+                            System.out.println("Transaksi berhasil ditambahkan!");
+                        } else {
+                            System.out.println("Kendaraan sudah dipinjam orang lain!");
+                        }
                     } else {
                         System.out.println("Kendaraan tidak ditemukan!");
                     }
