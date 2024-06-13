@@ -1,21 +1,20 @@
 public class TransaksiRental {
-     private static int nextKodeTransaksi = 1;
-
+    private static int autoIncrement = 1;
     private int kodeTransaksi;
     private String namaPeminjam;
     private int lamaPinjam;
     private double totalBiaya;
-    private BarangRental barang;
+    private BarangRental br;
 
-    // Constructor
-    public TransaksiRental(String namaPeminjam, int lamaPinjam, BarangRental barang) {
-        this.kodeTransaksi = nextKodeTransaksi++;
+    public TransaksiRental(String namaPeminjam, int lamaPinjam, BarangRental br) {
+        this.kodeTransaksi = autoIncrement++;
         this.namaPeminjam = namaPeminjam;
         this.lamaPinjam = lamaPinjam;
-        this.barang = barang;
-        this.totalBiaya = lamaPinjam * barang.getBiayaSewa();
+        this.br = br;
+        this.totalBiaya = lamaPinjam * br.getBiayaSewa();
     }
 
+    // Getters
     public int getKodeTransaksi() {
         return kodeTransaksi;
     }
@@ -32,8 +31,7 @@ public class TransaksiRental {
         return totalBiaya;
     }
 
-    public BarangRental getBarang() {
-        return barang;
+    public BarangRental getBr() {
+        return br;
     }
 }
-

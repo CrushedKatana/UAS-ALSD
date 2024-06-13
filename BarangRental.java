@@ -5,7 +5,6 @@ public class BarangRental {
     private int tahun;
     private int biayaSewa;
 
-    // Konstructor
     public BarangRental(String noTNKB, String namaKendaraan, String jenisKendaraan, int tahun, int biayaSewa) {
         this.noTNKB = noTNKB;
         this.namaKendaraan = namaKendaraan;
