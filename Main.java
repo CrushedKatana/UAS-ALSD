@@ -23,12 +23,12 @@ public class Main {
             System.out.println("5. Keluar");
             System.out.print("Pilih (1-5): ");
             choice = scanner.nextInt();
-            scanner.nextLine(); 
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
                     System.out.println("Daftar Kendaraan Rental Serba Serbi");
-                    System.out.println("Nomor TNKB | Nama Kendaraan | Jenis | Tahun | Biaya Sewa Perjam");
+                    System.out.println("Nomor TNKB | Nama Kendaraan | Jenis | Tahun | Biaya Sewa Perjam | Status");
                     for (BarangRental br : barangRentals) {
                         System.out.println(br.getNoTNKB() + " | " + br.getNamaKendaraan() + " | " + br.getJenisKendaraan() +
                                 " | " + br.getTahun() + " | " + br.getBiayaSewa() + " | " + (br.isRented() ? "Sudah Dipinjam" : "Tersedia"));
@@ -39,12 +39,12 @@ public class Main {
                     String namaPeminjam = scanner.nextLine();
                     System.out.print("Lama Pinjam (jam): ");
                     int lamaPinjam = scanner.nextInt();
-                    scanner.nextLine(); 
+                    scanner.nextLine(); // consume newline
                     System.out.print("Nomor TNKB Kendaraan: ");
                     String noTNKB = scanner.nextLine();
                     System.out.print("Apakah Anda seorang member (true/false)? ");
                     boolean isMember = scanner.nextBoolean();
-                    scanner.nextLine(); 
+                    scanner.nextLine(); // consume newline
 
                     BarangRental selectedBarang = null;
                     for (BarangRental br : barangRentals) {
@@ -67,7 +67,11 @@ public class Main {
                     }
                     break;
                 case 3:
-                    transaksiList.printList();
+                    System.out.println("Daftar Transaksi Peminjaman Rental Serba Serbi");
+                    System.out.println("Kode Transaksi | No TNKB | Nama Barang | Nama Peminjam | Lama Pinjam | Total Biaya");
+                    transaksiList.printListWithDetails(); 
+                    double totalPendapatan = transaksiList.calculateTotalPendapatan();
+                    System.out.println("Pendapatan hari ini: Rp " + totalPendapatan);
                     break;
                 case 4:
                     transaksiList.sortByNoTNKB();

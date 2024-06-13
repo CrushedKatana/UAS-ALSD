@@ -17,7 +17,7 @@ public class DoubleLinkedList {
         Node current = head;
         while (current != null) {
             System.out.println("Kode Transaksi: " + current.data.getKodeTransaksi() + ", Nama Peminjam: " + current.data.getNamaPeminjam() +
-                    ", Lama Pinjam: " + current.data.getLamaPinjam() + ", Total Biaya: " + current.data.getTotalBiaya() +
+                    ", Lama Pinjam: " + current.data.getLamaPinjam() + " jam, Total Biaya: Rp " + current.data.getTotalBiaya() +
                     ", Barang: " + current.data.getBr().getNamaKendaraan() + " (" + current.data.getBr().getNoTNKB() + ")");
             current = current.next;
         }
@@ -43,5 +43,28 @@ public class DoubleLinkedList {
             }
         } while (swapped);
     }
-}
 
+    public double calculateTotalPendapatan() {
+        double total = 0;
+        Node current = head;
+        while (current != null) {
+            total += current.data.getTotalBiaya();
+            current = current.next;
+        }
+        return total;
+
+    }
+    public void printListWithDetails() {
+        Node current = head;
+        while (current != null) {
+            TransaksiRental tr = current.data;
+            System.out.println(tr.getKodeTransaksi() + " | " +
+                    tr.getBr().getNoTNKB() + " | " +
+                    tr.getBr().getNamaKendaraan() + " | " +
+                    tr.getNamaPeminjam() + " | " +
+                    tr.getLamaPinjam() + " | " +
+                    tr.getTotalBiaya());
+            current = current.next;
+        }
+    }
+}
